@@ -3,6 +3,7 @@ import { Task } from './types/Task'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 import MotivationalCompanion from './components/MotivationalCompanion'
+import Tabs from './components/Tabs'
 import { mockTasks } from './data/mockTasks'
 import './App.css'
 
@@ -10,6 +11,7 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [isFormVisible, setIsFormVisible] = useState(false)
   const [isFormHiding, setIsFormHiding] = useState(false)
+  const [activeTab, setActiveTab] = useState<'active' | 'completed'>('active')
 
   useEffect(() => {
     // Load mock tasks when the app starts
@@ -18,6 +20,10 @@ function App() {
 
   const completedTasks = tasks.filter(task => task.completed).length;
   const totalTasks = tasks.length;
+
+  const filteredTasks = tasks.filter(task => 
+    activeTab === 'active' ? !task.completed : task.completed
+  );
 
   const handleAddTask = (newTask: Omit<Task, 'id' | 'completed' | 'createdAt'>) => {
     const task: Task = {
@@ -63,6 +69,11 @@ function App() {
         totalTasks={totalTasks}
         completedTasks={completedTasks}
       />
+      <Tabs 
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        tasks={tasks}
+      />
       {isFormVisible && (
         <TaskForm 
           onSubmit={handleAddTask} 
@@ -70,7 +81,7 @@ function App() {
         />
       )}
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         onTaskComplete={handleTaskComplete}
         onTaskDelete={handleTaskDelete}
       />
