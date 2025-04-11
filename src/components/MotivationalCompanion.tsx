@@ -38,6 +38,13 @@ const MotivationalCompanion = ({ totalTasks, completedTasks }: MotivationalCompa
 
   return (
     <div className="companion-container" data-testid="companion-container">
+      <div className="mood-bar-container">
+        <div 
+          className="mood-bar" 
+          style={{ width: `${happinessLevel}%` }}
+          data-testid="mood-bar"
+        />
+      </div>
       <div className="companion">
         <div className="companion-body">
           <div className="companion-face">
@@ -45,7 +52,10 @@ const MotivationalCompanion = ({ totalTasks, completedTasks }: MotivationalCompa
               <div className="eye"></div>
               <div className="eye"></div>
             </div>
-            <div className="mouth" style={{ transform: `scale(${1 + happinessLevel / 100})` }}></div>
+            <div 
+              className="mouth" 
+              style={{ transform: `scale(${1 + happinessLevel / 100})` }}
+            />
           </div>
         </div>
       </div>

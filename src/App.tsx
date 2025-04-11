@@ -3,12 +3,18 @@ import { Task } from './types/Task'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 import MotivationalCompanion from './components/MotivationalCompanion'
+import { mockTasks } from './data/mockTasks'
 import './App.css'
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [isFormVisible, setIsFormVisible] = useState(false)
   const [isFormHiding, setIsFormHiding] = useState(false)
+
+  useEffect(() => {
+    // Load mock tasks when the app starts
+    setTasks(mockTasks);
+  }, []);
 
   const completedTasks = tasks.filter(task => task.completed).length;
   const totalTasks = tasks.length;
@@ -53,6 +59,10 @@ function App() {
   return (
     <div className="app">
       <h1>Todo Tasklist</h1>
+      <MotivationalCompanion 
+        totalTasks={totalTasks}
+        completedTasks={completedTasks}
+      />
       {isFormVisible && (
         <TaskForm 
           onSubmit={handleAddTask} 
@@ -63,10 +73,6 @@ function App() {
         tasks={tasks}
         onTaskComplete={handleTaskComplete}
         onTaskDelete={handleTaskDelete}
-      />
-      <MotivationalCompanion 
-        totalTasks={totalTasks}
-        completedTasks={completedTasks}
       />
       <button 
         className={`fab ${isFormVisible ? 'rotate' : ''} ${tasks.length === 0 ? 'pulse' : ''}`}
