@@ -1,5 +1,7 @@
 # Todo Task List Application
 
+*Built entirely through AI-assisted development using Cursor*
+
 A modern, user-friendly task management application built with React, TypeScript, and Vite.
 
 ## Features
@@ -8,6 +10,22 @@ A modern, user-friendly task management application built with React, TypeScript
 - View and manage existing tasks
 - Motivational quotes to keep you inspired
 - Clean and intuitive user interface
+
+## Development with Cursor
+
+This application was built using Cursor as an experiment to explore the capabilities of AI-assisted development. The development process included:
+
+### Development Process
+- Using AI to generate initial component structures and boilerplate code
+- Implementing features with real-time code suggestions
+- Writing tests with AI assistance to maintain high coverage
+- Iterating on the UI with immediate feedback
+
+### Technical Implementation
+- TypeScript for type safety and better code organization
+- React components for the user interface
+- Vite for fast development and building
+- Tailwind CSS for styling
 
 ## Screenshots
 
